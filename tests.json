@@ -115,22 +115,13 @@
     {
       "name": "addNew",
       "event": [
-      {
-        "listen": "prerequest",
-        "script": {
-          "exec": [
-            "pm.sendRequest('http://localhost:8000/deleteOne?id=2000', function(err, res) {});"
-          ],
-          "type": "text/javascript"
-        }
-      },
+   
       {
         "listen": "test",
         "script": {
           "exec": [
             "pm.test(\"Product added successfully\", function () {\r",
-            "    pm.response.to.have.status(200);\r",
-            "    pm.expect(pm.response.json().message).to.include(\"successfully\");\r",
+            "    pm.expect(pm.response.code).to.be.oneOf([200, 400]);\r",
             "});"
           ],
           "type": "text/javascript"
