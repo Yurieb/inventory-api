@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from prometheus_fastapi_instrumentator import Instrumentator
 from pymongo import MongoClient
 from pydantic import BaseModel, Field
 import requests
@@ -12,6 +13,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
+Instrumentator().instrument(app).expose(app)
 client = MongoClient(os.getenv("MONGO_URI"))
 db = client["inventory"]
 collection = db["products"]
