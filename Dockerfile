@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install fastapi uvicorn pymongo pandas requests python-dotenv
+RUN pip install fastapi uvicorn pymongo pandas requests python-dotenv prometheus-fastapi-instrumentator
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
